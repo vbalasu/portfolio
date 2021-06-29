@@ -1,0 +1,17 @@
+Description,Asset,Qty,Price,Amount (USD)
+Crypto - Ledger nano ETH,ETH,4.99,"=VLOOKUP(B2,coingecko!A:B,2,""false"")",=C2*D2
+Crypto - Ledger nano DAI,DAI,20000,"=VLOOKUP(B3,coingecko!A:B,2,""false"")",=C3*D3
+Crypto - Ledger nano ALGO,ALGO,10061,"=VLOOKUP(B4,coingecko!A:B,2,""false"")",=C4*D4
+Crypto.- Ledger nano BTC,BTC,0,"=VLOOKUP(B5,coingecko!A:B,2,""false"")",=C5*D5
+Crypto - WBTC in Maker Vault,WBTC,4.119,"=VLOOKUP(B6,coingecko!A:B,2,""false"")",=C6*D6
+Kraken - DOT,DOT,0,"=VLOOKUP(B7,coingecko!A:B,2,""false"")",=C7*D7
+Aave - ETH lending,ETH,0,"=VLOOKUP(B8,coingecko!A:B,2,""false"")",=C8*D8
+Crypto - Ledger Nano X ADA,ADA,0,"=VLOOKUP(B9,coingecko!A:B,2,""false"")",=C9*D9
+Crypto - Ledger Nano X DOT,DOT,9992,"=VLOOKUP(B10,coingecko!A:B,2,""false"")",=C10*D10
+Crypto - Ledger Nano X DOT Polkadot 3,DOT,14743,"=VLOOKUP(B11,coingecko!A:B,2,""false"")",=C11*D11
+Crypto - Ledger Nano X SOL,SOL,11399,"=VLOOKUP(B12,coingecko!A:B,2,""false"")",=C12*D12
+MakerDAO - ETH Vault,ETH,220.33,"=VLOOKUP(B13,coingecko!A:B,2,""false"")",=C13*D13
+MakerDAO - ETH Vault,DAI,-271405,"=VLOOKUP(B14,coingecko!A:B,2,""false"")",=C14*D14
+MakerDAO - WBTC Vault,DAI,-70021,"=VLOOKUP(B15,coingecko!A:B,2,""false"")",=C15*D15
+Binance - BNB,BNB,258.11,"=VLOOKUP(B16,coingecko!A:B,2,""false"")",=C16*D16
+TOTAL,,,,=SUM(E2:E16)
