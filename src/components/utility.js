@@ -37,8 +37,8 @@ readRemoteFile(url, {
 })
 })
 }
-async function load_csv() {
-var data = await toJson("https://portfolio.cloudmatica.com/portfolio.csv")
+async function load_csv(user, cid) {
+var data = await toJson(`https://portfolio-api.cloudmatica.com/get/${user}/${cid}`)
 return data
 }
 
@@ -49,10 +49,10 @@ td.style.color = 'green';
 td.style.background = '#CEC';
 }
 
-async function main() {
+async function main(user, cid, readOnly = false) {
 var hyperformulaInstance = HyperFormula.buildEmpty({licenseKey: 'non-commercial-and-evaluation'});
 
-window.portfolio = await load_csv()
+window.portfolio = await load_csv(user, cid)
 
 window.markets = await get_markets()
 window.markets_array = markets_to_array(window.markets)
@@ -60,6 +60,7 @@ var data = window.markets_array  //.slice(1)
 
 var container2 = document.getElementById('hot2');
 var hot2 = new Handsontable(container2, {
+  readOnly: true,   // lookup sheet is always read only
   data: data,
   rowHeaders: true,
   colHeaders: false,
@@ -82,6 +83,7 @@ var hot2 = new Handsontable(container2, {
 var container1 = document.getElementById('hot1');
 var hot1 = new Handsontable(container1, {
   data: window.portfolio,  //.slice(1),
+  readOnly: readOnly,  // based on parameter
   rowHeaders: true,
   colHeaders: false,
   filters: true,

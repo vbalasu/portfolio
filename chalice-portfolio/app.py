@@ -4,19 +4,18 @@ import boto3
 app = Chalice(app_name='chalice-portfolio')
 
 
-@app.route('/get/{user}/{cid}')
+@app.route('/get/{user}/{cid}', cors=True)
 def get(user, cid):
     url = f's3://cloudmatica/portfolio/{user}/{cid}'
     print('get', url)
-    app.api.binary_types.append("text/csv")
     s3 = boto3.client('s3')
     s3.download_file('cloudmatica', f'portfolio/{user}/{cid}', '/tmp/portfolio.csv')
     with open('/tmp/portfolio.csv', 'rb') as f:
         body = f.read()
-    return Response(body=body, headers={'Content-Type': 'text/csv', 'Content-Disposition': 'attachment; filename=portfolio.csv'})
+    return Response(body=body, headers={'Content-Type': 'text/csv'})
 
 # USAGE: http PUT http://127.0.0.1:8000/put/vbalasu.kb@gmail.com/portfolio @portfolio.csv
-@app.route('/put/{user}/{cid}', methods=['PUT'], content_types=['text/csv'])
+@app.route('/put/{user}/{cid}', methods=['PUT'], content_types=['text/csv'], cors=True)
 def put(user, cid):
     url = f's3://cloudmatica/portfolio/{user}/{cid}'
     print('put', url)
