@@ -15,8 +15,12 @@ def get(user, cid):
     return Response(body=body, headers={'Content-Type': 'text/csv'})
 
 # USAGE: http PUT http://127.0.0.1:8000/put/vbalasu.kb@gmail.com/portfolio @portfolio.csv
-@app.route('/put/{user}/{cid}', methods=['PUT'], content_types=['text/csv'], cors=True)
-def put(user, cid):
+@app.route('/put/{user}/{cid}/{token}', methods=['PUT'], content_types=['text/csv'], cors=True)
+def put(user, cid, token):
+    import requests
+    auth = requests.get(f'https://email-authentication.cloudmatica.com/verify/{user}/{token}')
+    if not auth.json():
+        return False
     url = f's3://cloudmatica/portfolio/{user}/{cid}'
     print('put', url)
     payload = app.current_request.raw_body
