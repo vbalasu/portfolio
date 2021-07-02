@@ -24,7 +24,7 @@ def put(user, cid):
     with open('/tmp/portfolio.csv', 'wb') as f:
         f.write(payload)
     s3.upload_file('/tmp/portfolio.csv', 'cloudmatica', f'portfolio/{user}/{cid}')
-    return {'success': True}
+    return True
 
 
 

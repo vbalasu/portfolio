@@ -25,3 +25,4 @@ yarn-error.log*
 # chalice
 chalice-portfolio/__pycache__/
 chalice-portfolio/.chalice/deployed/
+chalice-portfolio/tests/__pycache__/
