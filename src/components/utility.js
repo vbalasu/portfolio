@@ -87,6 +87,8 @@ var hot1 = new Handsontable(container1, {
   readOnly: readOnly,  // based on parameter
   rowHeaders: true,
   colHeaders: false,
+  height: 500,
+  overflow: 'hidden',
   filters: true,
   contextMenu: true,
   dropdownMenu: true,

@@ -43,7 +43,7 @@ class ViewPortfolio extends Component {
     return ( 
       <React.Fragment>
         <h2>Crypto Portfolio</h2>
-        <div style={{height:"400px"}}>
+        <div>
           <div id="hot1"></div>
         </div>
         <span>
@@ -58,7 +58,7 @@ class ViewPortfolio extends Component {
 
         <br /><br />
         <h2>Coingecko Prices</h2>
-        <div style={{height:"400px"}}>
+        <div>
           <div id="hot2"></div>
         </div>
       </React.Fragment> );
