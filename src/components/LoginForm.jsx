@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Faq from './Faq';
 
 class LoginForm extends Component {
   state = {  }
@@ -15,6 +16,7 @@ class LoginForm extends Component {
           <br></br><br></br>
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
+        <br /><Faq />
       </form>
     </div>       
      );

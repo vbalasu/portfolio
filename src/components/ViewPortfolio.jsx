@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { jsonToCSV } from 'react-papaparse';
 import { main } from './utility';
+import Faq from './Faq';
 
 class ViewPortfolio extends Component {
   validStates = ['1-ready', '2-waitingForTokenGen', '3-enterToken', '4-sendingData']
@@ -42,7 +43,8 @@ class ViewPortfolio extends Component {
     console.log(this.props);
     return ( 
       <React.Fragment>
-        <h2>Crypto Portfolio</h2>
+        <div className="container">
+        <h4>Crypto Portfolio</h4>
         <div>
           <div id="hot1"></div>
         </div>
@@ -57,10 +59,12 @@ class ViewPortfolio extends Component {
         </span>
         { this.state.status === '3-enterToken' ? <span className="alert alert-warning m-2" role="alert">Not yet saved</span> : <></>}
         { this.state.status === '4-sendingData' ? <span className="alert alert-success m-2" role="alert">Saving...</span> : <></>}
+        <Faq />
         <br /><br />
-        <h2>Coingecko Prices</h2>
+        <h4>Coingecko Prices</h4>
         <div>
           <div id="hot2"></div>
+        </div>
         </div>
       </React.Fragment> );
   }
