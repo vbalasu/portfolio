@@ -112,6 +112,8 @@ var hot1 = new Handsontable(container1, {
   },
   licenseKey: 'non-commercial-and-evaluation'
 });
+window.hot1 = hot1;
+window.hot2 = hot2;
 
 
 }

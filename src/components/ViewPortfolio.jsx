@@ -18,6 +18,12 @@ class ViewPortfolio extends Component {
     else if (this.state.status === '3-enterToken') {
       this.setState({status: '4-sendingData'});
       console.log('Sending data');
+      var token = document.getElementById('token').value
+      var body = window.hot1.getPlugin('exportFile').exportAsBlob('csv');
+      response = await fetch(`https://portfolio-api.cloudmatica.com/put/${this.props.user}/${this.props.cid}/${token}`, 
+        {method: 'PUT', headers: {'Content-Type': 'text/csv'}, body: body});
+      result = await response.json();
+      if(!result) alert('Unable to save');
       this.setState({status: '1-ready'})
     }
   }
@@ -40,8 +46,8 @@ class ViewPortfolio extends Component {
         </div>
         <span>
           { this.state.status === '3-enterToken' ? <input className="m-2 col-sm-5" type="text" id="token" name="token" placeholder="OTP (Check your email)" /> : <div></div> }
-          { this.state.status === '2-waitingForTokenGen' || this.state.status === '4-sendingData' ? <button class="btn btn-primary" type="button" disabled>
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          { this.state.status === '2-waitingForTokenGen' || this.state.status === '4-sendingData' ? <button className="btn btn-primary" type="button" disabled>
+            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             Please Wait...
             </button>
           : <button className="btn btn-primary" onClick={this.saveButton}>Save</button>
