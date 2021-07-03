@@ -1,7 +1,8 @@
 import Handsontable from 'handsontable';
 import 'handsontable/dist/handsontable.full.css';
 import { HyperFormula } from 'hyperformula';
-import { readRemoteFile } from 'react-papaparse';
+import { readRemoteFile, jsonToCSV } from 'react-papaparse';
+window.jsonToCSV = jsonToCSV;
 
 async function fetchData(url) {
   var row;

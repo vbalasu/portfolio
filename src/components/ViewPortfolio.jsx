@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { jsonToCSV } from 'react-papaparse';
 import { main } from './utility';
 
 class ViewPortfolio extends Component {
@@ -18,8 +19,9 @@ class ViewPortfolio extends Component {
     else if (this.state.status === '3-enterToken') {
       this.setState({status: '4-sendingData'});
       console.log('Sending data');
-      var token = document.getElementById('token').value
-      var body = window.hot1.getPlugin('exportFile').exportAsBlob('csv');
+      var token = document.getElementById('token').value;
+      var body = jsonToCSV(window.hot1.getSourceData());
+      //var body = window.hot1.getPlugin('exportFile').exportAsBlob('csv');
       response = await fetch(`https://portfolio-api.cloudmatica.com/put/${this.props.user}/${this.props.cid}/${token}`, 
         {method: 'PUT', headers: {'Content-Type': 'text/csv'}, body: body});
       result = await response.json();
