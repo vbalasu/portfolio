@@ -52,10 +52,11 @@ class ViewPortfolio extends Component {
             <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             Please Wait...
             </button>
-          : <button className="btn btn-primary" onClick={this.saveButton}>Save</button>
+          : <button className="btn btn-primary m-2" onClick={this.saveButton}>Save</button>
           }
         </span>
-
+        { this.state.status === '3-enterToken' ? <span className="alert alert-warning m-2" role="alert">Not yet saved</span> : <></>}
+        { this.state.status === '4-sendingData' ? <span className="alert alert-success m-2" role="alert">Saving...</span> : <></>}
         <br /><br />
         <h2>Coingecko Prices</h2>
         <div>
