@@ -88,6 +88,7 @@ var hot1 = new Handsontable(container1, {
   rowHeaders: true,
   colHeaders: false,
   filters: true,
+  contextMenu: true,
   dropdownMenu: true,
     formulas: {
     engine: hyperformulaInstance,
