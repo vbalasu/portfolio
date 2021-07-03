@@ -8,8 +8,12 @@ app = Chalice(app_name='chalice-portfolio')
 def get(user, cid):
     url = f's3://cloudmatica/portfolio/{user}/{cid}'
     print('get', url)
+    from botocore.exceptions import ClientError
     s3 = boto3.client('s3')
-    s3.download_file('cloudmatica', f'portfolio/{user}/{cid}', '/tmp/portfolio.csv')
+    try:
+        s3.download_file('cloudmatica', f'portfolio/{user}/{cid}', '/tmp/portfolio.csv')
+    except ClientError:
+        s3.download_file('cloudmatica', f'portfolio/portfolio.csv', '/tmp/portfolio.csv')
     with open('/tmp/portfolio.csv', 'rb') as f:
         body = f.read()
     return Response(body=body, headers={'Content-Type': 'text/csv'})
