@@ -7,6 +7,7 @@ app = Chalice(app_name='chalice-portfolio')
 @app.route('/get/{user}/{cid}', cors=True)
 def get(user, cid):
     url = f's3://cloudmatica/portfolio/{user}/{cid}'
+    log(user, cid)
     print('get', url)
     from botocore.exceptions import ClientError
     s3 = boto3.client('s3')
@@ -34,8 +35,13 @@ def put(user, cid, token):
     s3.upload_file('/tmp/portfolio.csv', 'cloudmatica', f'portfolio/{user}/{cid}')
     return True
 
-
-
+@app.route('/log/{user}/{cid}', cors=True)
+def log(user, cid):
+    import datetime
+    dynamodb = boto3.resource('dynamodb')
+    table = dynamodb.Table('portfolio')
+    response = table.put_item(Item={'timestamp': datetime.datetime.now().isoformat(), 'action': 'view', 'user': user, 'cid': cid})
+    return response['ResponseMetadata']['HTTPStatusCode'] == 200
 
 # The view function above will return {"hello": "world"}
 # whenever you make an HTTP GET request to '/'.
