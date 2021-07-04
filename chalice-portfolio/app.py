@@ -40,7 +40,7 @@ def log(user, cid):
     import datetime
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('portfolio')
-    response = table.put_item(Item={'timestamp': datetime.datetime.now().isoformat(), 'action': 'view', 'user': user, 'cid': cid})
+    response = table.put_item(Item={'timestamp': datetime.datetime.utcnow().isoformat(), 'action': 'view', 'user': user, 'cid': cid})
     return response['ResponseMetadata']['HTTPStatusCode'] == 200
 
 # The view function above will return {"hello": "world"}
